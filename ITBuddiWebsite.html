@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITbuddi - Your Partner in Digital Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gemini-feature-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+         /* Simple loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #4f46e5;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">
+                ITbuddi
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-600 hover:text-indigo-600">Services</a>
+                <a href="#ai-tools" class="text-gray-600 hover:text-indigo-600">✨ AI Tools</a>
+                <a href="#pricing" class="text-gray-600 hover:text-indigo-600">Pricing</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600">About Us</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:inline-block bg-indigo-600 text-white font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#services" class="block py-2 text-gray-600 hover:text-indigo-600">Services</a>
+            <a href="#ai-tools" class="block py-2 text-gray-600 hover:text-indigo-600">✨ AI Tools</a>
+            <a href="#pricing" class="block py-2 text-gray-600 hover:text-indigo-600">Pricing</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-indigo-600">About Us</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-indigo-600">Contact</a>
+            <a href="#contact" class="block mt-2 bg-indigo-600 text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Your Digital Partner for Growth</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">We empower small and medium businesses in South Africa by making technology simple. From websites to social media, we're your one-stop-shop for a powerful online presence.</p>
+                <a href="#contact" class="mt-8 inline-block bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg text-lg cta-button">
+                    Start Your Digital Journey Today
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Everything You Need, All In One Place</h2>
+                    <p class="mt-4 text-lg text-gray-600">Our integrated services are designed to build and grow your brand online.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service 1: Website -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-6">Website Development</h3>
+                        <p class="mt-2 text-gray-600">Professional, mobile-friendly websites that showcase your business and attract customers.</p>
+                    </div>
+                    <!-- Service 2: E-commerce -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-6">Online Stores</h3>
+                        <p class="mt-2 text-gray-600">Powerful e-commerce solutions to sell your products online, 24/7, with secure payments.</p>
+                    </div>
+                    <!-- Service 3: Social Media -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
+                       <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v4z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-6">Social Media</h3>
+                        <p class="mt-2 text-gray-600">We create and manage your social media pages to engage your audience and build a community.</p>
+                    </div>
+                    <!-- Service 4: Advertising -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-6">Digital Advertising</h3>
+                        <p class="mt-2 text-gray-600">Targeted Google and social media ads that drive traffic and generate leads for your business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gemini AI Tools Section -->
+        <section id="ai-tools" class="py-20 hero-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">✨ Let Our AI Help You</h2>
+                    <p class="mt-4 text-lg text-gray-600">Use our free tools, powered by Gemini, to kickstart your business journey.</p>
+                </div>
+                <div class="max-w-4xl mx-auto gemini-feature-card p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-center mb-6">AI Business Idea & Name Generator</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input type="text" id="business-keywords" placeholder="E.g., 'handmade coffee mugs in Randburg'" class="flex-grow border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                        <button id="generate-names-btn" class="bg-indigo-600 text-white font-bold px-6 py-3 rounded-lg cta-button flex items-center justify-center">
+                            <span id="generate-names-text">Generate Ideas</span>
+                            <div id="generate-names-loader" class="loader hidden ml-3"></div>
+                        </button>
+                    </div>
+                    <div id="name-results" class="mt-6 p-6 bg-gray-50 rounded-lg hidden text-gray-700 whitespace-pre-wrap"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Package Recommender Section -->
+        <section id="ai-recommender" class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">✨ Not Sure Which Plan to Choose?</h2>
+                    <p class="mt-4 text-lg text-gray-600">Answer a few questions and our AI will recommend the perfect package for you.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+                    <div class="space-y-6">
+                        <div>
+                            <label for="goal" class="block text-sm font-medium text-gray-700">What is your main goal?</label>
+                            <select id="goal" class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option>Get my business online for the first time</option>
+                                <option>Grow my existing online presence</option>
+                                <option>Sell my products online</option>
+                                <option>Generate more leads and sales</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="business-type" class="block text-sm font-medium text-gray-700">What best describes your business?</label>
+                            <input type="text" id="business-type" placeholder="E.g., 'Local bakery', 'Online clothing store'" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button id="recommend-package-btn" class="bg-indigo-600 text-white font-bold px-8 py-3 rounded-lg text-lg cta-button flex items-center justify-center mx-auto">
+                           <span id="recommend-package-text">Get Recommendation</span>
+                           <div id="recommend-package-loader" class="loader hidden ml-3"></div>
+                        </button>
+                    </div>
+                    <div id="recommendation-result" class="mt-6 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-lg hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pt-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Simple, Transparent Pricing</h2>
+                    <p class="mt-4 text-lg text-gray-600">Choose a package that fits your business needs and budget.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Pricing Plan 1: Starter -->
+                    <div class="border border-gray-200 rounded-xl p-8 flex flex-col">
+                        <h3 class="text-2xl font-semibold">Digital Starter</h3>
+                        <p class="text-gray-500 mt-2">Perfect for getting online.</p>
+                        <p class="text-4xl font-bold mt-6">R3,499 <span class="text-lg font-medium text-gray-500">once-off</span></p>
+                        <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3-Page Website</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Google Business Profile Setup</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>2 Social Media Pages Setup</li>
+                        </ul>
+                        <a href="#contact" class="mt-8 block text-center w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition">Choose Plan</a>
+                    </div>
+                     <!-- Pricing Plan 2: Growth -->
+                    <div class="border-2 border-indigo-600 rounded-xl p-8 flex flex-col relative">
+                        <span class="absolute top-0 -translate-y-1/2 bg-indigo-600 text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
+                        <h3 class="text-2xl font-semibold">Business Growth</h3>
+                        <p class="text-gray-500 mt-2">For businesses ready to grow.</p>
+                        <p class="text-4xl font-bold mt-6">R2,999 <span class="text-lg font-medium text-gray-500">/ month</span></p>
+                        <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>5-Page Website + Hosting</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Monthly Social Media Management</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Google Ads Campaign</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Monthly Performance Report</li>
+                        </ul>
+                        <a href="#contact" class="mt-8 block text-center w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg cta-button">Choose Plan</a>
+                    </div>
+                     <!-- Pricing Plan 3: E-commerce -->
+                    <div class="border border-gray-200 rounded-xl p-8 flex flex-col">
+                        <h3 class="text-2xl font-semibold">E-commerce Pro</h3>
+                        <p class="text-gray-500 mt-2">For selling products online.</p>
+                        <p class="text-4xl font-bold mt-6">R4,499 <span class="text-lg font-medium text-gray-500">/ month</span></p>
+                        <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
+                           <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Full Online Store Setup</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Product & Payment Integration</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Advanced Ad Campaigns</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Sales & Conversion Tracking</li>
+                        </ul>
+                        <a href="#contact" class="mt-8 block text-center w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">We're Your Friendly Tech Buddy</h2>
+                <p class="mt-6 text-lg text-gray-600">ITbuddi was founded with a simple mission: to help small and medium-sized businesses thrive in the digital world. We know that technology can be intimidating, so we've built our business around being approachable, reliable, and genuinely invested in your success. We handle the complex tech stuff so you can focus on what you do best – running your business.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 hero-gradient">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold">Ready to Grow Your Business?</h2>
+                    <p class="mt-4 text-lg text-gray-600">Let's talk! Fill out the form below for a free, no-obligation consultation.</p>
+                </div>
+                <div class="mt-12 bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between items-center">
+                                <label for="message" class="block text-sm font-medium text-gray-700">How can we help?</label>
+                                <button type="button" id="generate-message-btn" class="text-sm text-indigo-600 hover:text-indigo-800 font-semibold">✨ Help me write this</button>
+                            </div>
+                            <textarea id="message" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"></textarea>
+                            <div id="message-loader" class="loader hidden mt-2 mx-auto"></div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <button type="submit" class="w-full md:w-auto bg-indigo-600 text-white font-bold px-8 py-3 rounded-lg text-lg cta-button">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 ITbuddi. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">Your trusted partner in digital transformation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Gemini API Integration ---
+
+        const API_KEY = ""; // This will be handled by the environment, no key needed here.
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        
+        // --- Feature 1: AI Business Name Generator ---
+        const generateNamesBtn = document.getElementById('generate-names-btn');
+        const generateNamesText = document.getElementById('generate-names-text');
+        const generateNamesLoader = document.getElementById('generate-names-loader');
+        const businessKeywordsInput = document.getElementById('business-keywords');
+        const nameResultsDiv = document.getElementById('name-results');
+
+        generateNamesBtn.addEventListener('click', async () => {
+            const keywords = businessKeywordsInput.value;
+            if (!keywords) {
+                alert('Please enter some keywords about your business idea.');
+                return;
+            }
+
+            // Show loader
+            generateNamesText.classList.add('hidden');
+            generateNamesLoader.classList.remove('hidden');
+            generateNamesBtn.disabled = true;
+            nameResultsDiv.classList.add('hidden');
+
+            const prompt = `You are a creative branding expert based in South Africa. A user wants to start a business.
+            Their idea is: "${keywords}".
+            Generate 5 creative and catchy business name ideas. For each name, provide a very short, one-sentence description of the business concept.
+            The current date is Friday, October 10, 2025. Be creative and modern.
+            Format the output clearly with each name on a new line.`;
+
+            try {
+                const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                nameResultsDiv.textContent = text;
+                nameResultsDiv.classList.remove('hidden');
+            } catch (error) {
+                console.error("Error generating names:", error);
+                nameResultsDiv.textContent = 'Sorry, we couldn\'t generate names at this time. Please try again later.';
+                nameResultsDiv.classList.remove('hidden');
+            } finally {
+                // Hide loader
+                generateNamesText.classList.remove('hidden');
+                generateNamesLoader.classList.add('hidden');
+                generateNamesBtn.disabled = false;
+            }
+        });
+
+        // --- Feature 2: AI Package Recommender ---
+        const recommendBtn = document.getElementById('recommend-package-btn');
+        const recommendText = document.getElementById('recommend-package-text');
+        const recommendLoader = document.getElementById('recommend-package-loader');
+        const recommendationResultDiv = document.getElementById('recommendation-result');
+
+        recommendBtn.addEventListener('click', async () => {
+            const goal = document.getElementById('goal').value;
+            const businessType = document.getElementById('business-type').value;
+
+            if (!businessType) {
+                alert('Please describe your business.');
+                return;
+            }
+
+            // Show loader
+            recommendText.classList.add('hidden');
+            recommendLoader.classList.remove('hidden');
+            recommendBtn.disabled = true;
+            recommendationResultDiv.classList.add('hidden');
+
+            const pricingInfo = `
+                1. Digital Starter (R3,499 once-off): 3-Page Website, Google Business Profile, 2 Social Media Pages. Best for new businesses needing a basic online presence.
+                2. Business Growth (R2,999/month): 5-Page Website + Hosting, Monthly Social Media Management, Basic Google Ads, Monthly Report. Best for established businesses wanting to grow.
+                3. E-commerce Pro (R4,499/month): Full Online Store, Product & Payment Integration, Advanced Ads, Sales Tracking. Best for businesses selling products online.`;
+
+            const prompt = `You are an expert digital consultant for ITbuddi, a company in South Africa helping small businesses.
+            A potential client has the following needs:
+            - Their main goal is: "${goal}"
+            - Their business is a: "${businessType}"
+
+            Based on this information and the available packages below, recommend ONE package and only one.
+            Explain in a friendly and concise paragraph (2-3 sentences) WHY this package is the best fit for their specific needs.
+            Start your recommendation with a clear heading like "Our Recommendation: [Package Name]".
+
+            Here are the packages:
+            ${pricingInfo}`;
+
+            try {
+                const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                recommendationResultDiv.innerHTML = text.replace(/\n/g, '<br>'); // Keep formatting
+                recommendationResultDiv.classList.remove('hidden');
+            } catch (error) {
+                console.error("Error recommending package:", error);
+                recommendationResultDiv.textContent = 'Sorry, we couldn\'t generate a recommendation at this time. Please try again later.';
+                recommendationResultDiv.classList.remove('hidden');
+            } finally {
+                // Hide loader
+                recommendText.classList.remove('hidden');
+                recommendLoader.classList.add('hidden');
+                recommendBtn.disabled = false;
+            }
+        });
+        
+        // --- Feature 3: AI-Assisted Contact Form ---
+        const generateMessageBtn = document.getElementById('generate-message-btn');
+        const messageTextarea = document.getElementById('message');
+        const messageLoader = document.getElementById('message-loader');
+
+        generateMessageBtn.addEventListener('click', async () => {
+            const name = document.getElementById('name').value;
+            const businessInfo = messageTextarea.value; // Use any existing text as context
+            
+            if (!name) {
+                alert('Please enter your name first.');
+                return;
+            }
+             if (!businessInfo) {
+                alert('Please write a few words about your business or what you need in the message box first.');
+                return;
+            }
+
+            // Show loader
+            generateMessageBtn.classList.add('hidden');
+            messageLoader.classList.remove('hidden');
+            
+            const prompt = `My name is ${name}. I am writing to ITbuddi for help with my business.
+            Here are some notes about what I need: "${businessInfo}".
+            Please expand these notes into a friendly but professional message for the contact form.
+            Keep it concise (3-4 sentences) and clear about needing digital services. Start with "Hi ITbuddi team,".`;
+
+            try {
+                const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                messageTextarea.value = text;
+            } catch (error) {
+                 console.error("Error generating message:", error);
+                 alert('Sorry, there was an error. Please try writing the message manually.');
+            } finally {
+                // Hide loader
+                generateMessageBtn.classList.remove('hidden');
+                messageLoader.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
+
