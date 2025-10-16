@@ -6,12 +6,32 @@
     <title>ITbuddi - Your Partner in Digital Growth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'itbuddi-yellow': '#D7DB38',
+                'itbuddi-blue': '#278BFB',
+                'itbuddi-violet': '#A13BFF',
+                'itbuddi-red': '#FF4955',
+                'itbuddi-green': '#B1FF59',
+                'itbuddi-orange': '#FF884D',
+                'itbuddi-charcoal': '#4C4C4C',
+              }
+            }
+          }
+        }
+      </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
         .hero-gradient {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #278BFB 0%, #A13BFF 100%);
+        }
+        .contact-gradient {
+             background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
         }
         .cta-button {
             transition: all 0.3s ease;
@@ -22,13 +42,14 @@
         }
         .service-card {
             transition: all 0.3s ease;
+            border-top-width: 4px;
         }
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         .gemini-feature-card {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -36,7 +57,7 @@
         .loader {
             border: 4px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 4px solid #4f46e5;
+            border-top: 4px solid #278BFB;
             width: 24px;
             height: 24px;
             animation: spin 1s linear infinite;
@@ -50,25 +71,33 @@
         }
         .pricing-card:hover {
             transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        .feature-card {
+             transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(39, 139, 251, 0.2), 0 4px 6px -2px rgba(39, 139, 251, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-itbuddi-charcoal">
 
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600">
+            <a href="#" class="text-2xl font-bold text-itbuddi-blue">
                 ITbuddi
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#services" class="text-gray-600 hover:text-indigo-600">Services</a>
-                <a href="#why-us" class="text-gray-600 hover:text-indigo-600">Why Us</a>
-                <a href="#pricing" class="text-gray-600 hover:text-indigo-600">Pricing</a>
-                <a href="#ai-tools" class="text-gray-600 hover:text-indigo-600">✨ AI Tools</a>
-                <a href="#contact" class="text-gray-600 hover:text-indigo-600">Contact</a>
+                <a href="#services" class="text-gray-600 hover:text-itbuddi-blue">Services</a>
+                <a href="#why-us" class="text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+                <a href="#pricing" class="text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+                <a href="#ai-tools" class="text-gray-600 hover:text-itbuddi-blue">✨ AI Tools</a>
+                <a href="#contact" class="text-gray-600 hover:text-itbuddi-blue">Contact</a>
             </div>
-            <a href="#contact" class="hidden md:inline-block bg-indigo-600 text-white font-semibold px-5 py-2 rounded-lg cta-button">
+            <a href="#contact" class="hidden md:inline-block bg-itbuddi-blue text-white font-semibold px-5 py-2 rounded-lg cta-button">
                 Get a Free Quote
             </a>
             <!-- Mobile Menu Button -->
@@ -78,12 +107,12 @@
         </nav>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#services" class="block py-2 text-gray-600 hover:text-indigo-600">Services</a>
-            <a href="#why-us" class="block py-2 text-gray-600 hover:text-indigo-600">Why Us</a>
-            <a href="#pricing" class="block py-2 text-gray-600 hover:text-indigo-600">Pricing</a>
-            <a href="#ai-tools" class="block py-2 text-gray-600 hover:text-indigo-600">✨ AI Tools</a>
-            <a href="#contact" class="block py-2 text-gray-600 hover:text-indigo-600">Contact</a>
-            <a href="#contact" class="block mt-2 bg-indigo-600 text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
+            <a href="#services" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Services</a>
+            <a href="#why-us" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+            <a href="#pricing" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+            <a href="#ai-tools" class="block py-2 text-gray-600 hover:text-itbuddi-blue">✨ AI Tools</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            <a href="#contact" class="block mt-2 bg-itbuddi-blue text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
                 Get a Free Quote
             </a>
         </div>
@@ -93,9 +122,9 @@
         <!-- Hero Section -->
         <section class="hero-gradient py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Your Fractional AI & IT Department</h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">We empower South African SMMEs with websites, CRM, chatbots, and automation. Get a measurable ROI with predictable pricing and a complete digital solution, fast.</p>
-                <a href="#pricing" class="mt-8 inline-block bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg text-lg cta-button">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Your Fractional AI & IT Department</h1>
+                <p class="mt-4 text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">We empower South African SMMEs with websites, CRM, chatbots, and automation. Get a measurable ROI with predictable pricing and a complete digital solution, fast.</p>
+                <a href="#pricing" class="mt-8 inline-block bg-itbuddi-yellow text-itbuddi-charcoal font-bold px-8 py-4 rounded-lg text-lg cta-button">
                     View Our Packages
                 </a>
             </div>
@@ -110,32 +139,32 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Service 1: Website & E-commerce -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center border-itbuddi-blue">
+                        <div class="bg-blue-100 text-itbuddi-blue rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                         </div>
                         <h3 class="text-xl font-semibold mt-6">Websites & Online Stores</h3>
                         <p class="mt-2 text-gray-600">Professional, mobile-friendly websites and e-commerce stores on Shopify, Woo, or Wix.</p>
                     </div>
                     <!-- Service 2: CRM & Automation -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center border-itbuddi-orange">
+                        <div class="bg-orange-100 text-itbuddi-orange rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                         </div>
                         <h3 class="text-xl font-semibold mt-6">CRM & Automation</h3>
                         <p class="mt-2 text-gray-600">Manage customer relationships and automate marketing with powerful CRM and email/WhatsApp tools.</p>
                     </div>
                     <!-- Service 3: AI Chatbots -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
-                       <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center border-itbuddi-violet">
+                       <div class="bg-violet-100 text-itbuddi-violet rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                         </div>
                         <h3 class="text-xl font-semibold mt-6">AI Chatbots</h3>
                         <p class="mt-2 text-gray-600">Engage customers 24/7 with AI chatbots for lead capture, FAQs, product search, and appointment booking.</p>
                     </div>
                     <!-- Service 4: Analytics & SEO -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md service-card text-center border-itbuddi-green">
+                        <div class="bg-green-100 text-itbuddi-green rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" /></svg>
                         </div>
                         <h3 class="text-xl font-semibold mt-6">Analytics & SEO</h3>
@@ -146,36 +175,36 @@
         </section>
         
         <!-- Value Proposition Section -->
-        <section id="why-us" class="py-20">
+        <section id="why-us" class="py-20 bg-blue-50">
              <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Designed for South African SMMEs</h2>
                     <p class="mt-4 text-lg text-gray-600">We're more than a service provider; we're your partner in growth.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Fast Time-to-Value</h3>
-                        <p class="mt-2 text-gray-600">Go live in under 14 days with our proven templates and playbooks.</p>
+                    <div class="bg-itbuddi-yellow text-itbuddi-charcoal p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Fast Time-to-Value</h3>
+                        <p class="mt-2">Go live in under 14 days with our proven templates and playbooks.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Fully Localized</h3>
-                        <p class="mt-2 text-gray-600">Built for SA with local payment gateways, WhatsApp commerce, and a POPIA-first approach.</p>
+                    <div class="bg-itbuddi-green text-itbuddi-charcoal p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Fully Localized</h3>
+                        <p class="mt-2">Built for SA with local payment gateways, WhatsApp commerce, and a POPIA-first approach.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Predictable Pricing</h3>
-                        <p class="mt-2 text-gray-600">Clear tiered SaaS pricing plus setup fees for a measurable and predictable ROI.</p>
+                    <div class="bg-itbuddi-orange text-white p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Predictable Pricing</h3>
+                        <p class="mt-2">Clear tiered SaaS pricing plus setup fees for a measurable and predictable ROI.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Measurable ROI</h3>
-                        <p class="mt-2 text-gray-600">We focus on results, with analytics and reporting built into every package.</p>
+                    <div class="bg-itbuddi-violet text-white p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Measurable ROI</h3>
+                        <p class="mt-2">We focus on results, with analytics and reporting built into every package.</p>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Fractional AI/IT Dept.</h3>
-                        <p class="mt-2 text-gray-600">Get the benefit of an entire IT team at a fraction of the cost.</p>
+                     <div class="bg-itbuddi-charcoal text-white p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Fractional AI/IT Dept.</h3>
+                        <p class="mt-2">Get the benefit of an entire IT team at a fraction of the cost.</p>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-indigo-600">Seamless Upgrades</h3>
-                        <p class="mt-2 text-gray-600">Easily upgrade your package and add new features as your business grows.</p>
+                     <div class="bg-itbuddi-blue text-white p-8 rounded-lg feature-card">
+                        <h3 class="text-xl font-bold">Seamless Upgrades</h3>
+                        <p class="mt-2">Easily upgrade your package and add new features as your business grows.</p>
                     </div>
                 </div>
             </div>
@@ -190,59 +219,59 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
                     <!-- Kickstart -->
-                    <div class="border border-gray-200 rounded-xl p-8 flex flex-col pricing-card">
+                    <div class="border-2 border-itbuddi-green rounded-xl p-8 flex flex-col pricing-card">
                         <h3 class="text-2xl font-semibold">Kickstart</h3>
                         <p class="text-gray-500 mt-2">Ideal For: Micro SMEs & sole traders getting online.</p>
                         <p class="text-4xl font-bold mt-6">R600<span class="text-lg font-medium text-gray-500"> /mo</span></p>
                         <p class="text-lg font-semibold text-gray-600">+ R1,500 Setup Fee</p>
                         <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Static 3-4 page site</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Google Business Profile</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>SEO Basics & Custom domain</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>GA4 Report (1 hr support)</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Static 3-4 page site</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Google Business Profile</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>SEO Basics & Custom domain</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>GA4 Report (1 hr support)</li>
                         </ul>
                         <a href="#contact" class="mt-8 block text-center w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition">Choose Plan</a>
                     </div>
                      <!-- Starter -->
-                    <div class="border border-gray-200 rounded-xl p-8 flex flex-col pricing-card">
+                    <div class="border-2 border-itbuddi-orange rounded-xl p-8 flex flex-col pricing-card">
                         <h3 class="text-2xl font-semibold">Starter</h3>
                         <p class="text-gray-500 mt-2">Ideal For: SMEs starting online sales & automation.</p>
                         <p class="text-4xl font-bold mt-6">R1,200<span class="text-lg font-medium text-gray-500"> /mo</span></p>
                         <p class="text-lg font-semibold text-gray-600">+ R2,500 Setup Fee</p>
                         <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>E-commerce (Shopify/Wix)</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Basic AI Chatbot (FAQ/Leads)</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>CRM Starter & Email Template</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>GA4 Dashboard (2 hrs support)</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>E-commerce (Shopify/Wix)</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Basic AI Chatbot (FAQ/Leads)</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>CRM Starter & Email Template</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>GA4 Dashboard (2 hrs support)</li>
                         </ul>
                         <a href="#contact" class="mt-8 block text-center w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition">Choose Plan</a>
                     </div>
                      <!-- Growth -->
-                    <div class="border-2 border-indigo-600 rounded-xl p-8 flex flex-col relative pricing-card">
-                        <span class="absolute top-0 -translate-y-1/2 bg-indigo-600 text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
+                    <div class="border-2 border-itbuddi-blue rounded-xl p-8 flex flex-col relative pricing-card">
+                        <span class="absolute top-0 -translate-y-1/2 bg-itbuddi-yellow text-itbuddi-charcoal text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
                         <h3 class="text-2xl font-semibold">Growth</h3>
                         <p class="text-gray-500 mt-2">Ideal For: SMEs scaling marketing & conversion.</p>
                         <p class="text-4xl font-bold mt-6">R2,500<span class="text-lg font-medium text-gray-500"> /mo</span></p>
                         <p class="text-lg font-semibold text-gray-600">+ R3,500 Setup Fee</p>
                         <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Advanced AI Chatbot</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>CRM Pro & Automation</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>SEO Cadence & Social Scheduling</li>
-                            <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Custom Dashboards (4 hrs support)</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Advanced AI Chatbot</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>CRM Pro & Automation</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>SEO Cadence & Social Scheduling</li>
+                            <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Custom Dashboards (4 hrs support)</li>
                         </ul>
-                        <a href="#contact" class="mt-8 block text-center w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg cta-button">Choose Plan</a>
+                        <a href="#contact" class="mt-8 block text-center w-full bg-itbuddi-blue text-white font-semibold py-3 rounded-lg cta-button">Choose Plan</a>
                     </div>
                      <!-- Pro -->
-                    <div class="border border-gray-200 rounded-xl p-8 flex flex-col pricing-card">
+                    <div class="border-2 border-itbuddi-violet rounded-xl p-8 flex flex-col pricing-card">
                         <h3 class="text-2xl font-semibold">Pro</h3>
                         <p class="text-gray-500 mt-2">Ideal For: High-volume SMEs & regional expansion.</p>
                         <p class="text-4xl font-bold mt-6">R4,500<span class="text-lg font-medium text-gray-500"> /mo</span></p>
                         <p class="text-lg font-semibold text-gray-600">+ R5,000 Setup Fee</p>
                         <ul class="mt-8 space-y-4 text-gray-600 flex-grow">
-                           <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Custom AI Bots & Automation</li>
-                           <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Enterprise CRM</li>
-                           <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>Adv. Marketing & Analytics</li>
-                           <li class="flex items-start"><span class="text-indigo-600 font-bold mr-2">✓</span>A/B Testing (8 hrs+ support)</li>
+                           <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Custom AI Bots & Automation</li>
+                           <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Enterprise CRM</li>
+                           <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>Adv. Marketing & Analytics</li>
+                           <li class="flex items-start"><span class="text-itbuddi-blue font-bold mr-2">✓</span>A/B Testing (8 hrs+ support)</li>
                         </ul>
                         <a href="#contact" class="mt-8 block text-center w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition">Choose Plan</a>
                     </div>
@@ -268,27 +297,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-gray-900" colspan="5">Core Platform</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4">Static website (3-4 pg, mobile)</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">E-commerce</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4">Google Business Profile</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Custom domain & email</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4">SEO basics</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-gray-900" colspan="5">AI & Automation</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4">AI Chatbot (FAQ/leads)</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Adv. AI Chatbot (search/booking)</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4">Custom AI recs</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-gray-900" colspan="5">Marketing & CRM</td></tr>
-                             <tr class="bg-white border-b"><td class="px-6 py-4">CRM & Automation</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-gray-400">Basic</td><td class="px-6 py-4 text-center text-green-500">Pro</td><td class="px-6 py-4 text-center text-green-500">Enterprise</td></tr>
-                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Email template (1 design)</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-white border-b"><td class="px-6 py-4">Social media setup</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Monthly SEO opt.</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-white border-b"><td class="px-6 py-4">Full marketing autom.</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-gray-900" colspan="5">Support & Analytics</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-itbuddi-charcoal" colspan="5">Core Platform</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4">Static website (3-4 pg, mobile)</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">E-commerce</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4">Google Business Profile</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Custom domain & email</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4">SEO basics</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-itbuddi-charcoal" colspan="5">AI & Automation</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4">AI Chatbot (FAQ/leads)</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Adv. AI Chatbot (search/booking)</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4">Custom AI recs</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-itbuddi-charcoal" colspan="5">Marketing & CRM</td></tr>
+                             <tr class="bg-white border-b"><td class="px-6 py-4">CRM & Automation</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-gray-400">Basic</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">Pro</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">Enterprise</td></tr>
+                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Email template (1 design)</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-white border-b"><td class="px-6 py-4">Social media setup</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Monthly SEO opt.</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-white border-b"><td class="px-6 py-4">Full marketing autom.</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-white border-b"><td class="px-6 py-4 font-semibold text-itbuddi-charcoal" colspan="5">Support & Analytics</td></tr>
                              <tr class="bg-white border-b"><td class="px-6 py-4">Support hrs/month</td><td class="px-6 py-4 text-center">1 hr</td><td class="px-6 py-4 text-center">2 hrs</td><td class="px-6 py-4 text-center">4 hrs</td><td class="px-6 py-4 text-center font-bold">8 hrs + Priority</td></tr>
-                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Adv. analytics dashboard</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-white border-b"><td class="px-6 py-4">A/B testing & opt.</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
-                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Dedicated AM/PM</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-red-500">✗</td><td class="px-6 py-4 text-center text-green-500">✓</td></tr>
+                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Adv. analytics dashboard</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-white border-b"><td class="px-6 py-4">A/B testing & opt.</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
+                             <tr class="bg-gray-50 border-b"><td class="px-6 py-4">Dedicated AM/PM</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-red font-bold">✗</td><td class="px-6 py-4 text-center text-itbuddi-green font-bold">✓</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -296,7 +325,7 @@
         </section>
 
         <!-- Gemini AI Tools Section -->
-        <section id="ai-tools" class="py-20 hero-gradient">
+        <section id="ai-tools" class="py-20 contact-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">✨ Let Our AI Help You</h2>
@@ -305,8 +334,8 @@
                 <div class="max-w-4xl mx-auto gemini-feature-card p-8 rounded-xl shadow-lg">
                     <h3 class="text-2xl font-semibold text-center mb-6">AI Business Idea & Name Generator</h3>
                     <div class="flex flex-col md:flex-row gap-4">
-                        <input type="text" id="business-keywords" placeholder="E.g., 'handmade coffee mugs in Randburg'" class="flex-grow border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
-                        <button id="generate-names-btn" class="bg-indigo-600 text-white font-bold px-6 py-3 rounded-lg cta-button flex items-center justify-center">
+                        <input type="text" id="business-keywords" placeholder="E.g., 'handmade coffee mugs in Randburg'" class="flex-grow border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
+                        <button id="generate-names-btn" class="bg-itbuddi-blue text-white font-bold px-6 py-3 rounded-lg cta-button flex items-center justify-center">
                             <span id="generate-names-text">Generate Ideas</span>
                             <div id="generate-names-loader" class="loader hidden ml-3"></div>
                         </button>
@@ -327,7 +356,7 @@
                     <div class="space-y-6">
                         <div>
                             <label for="goal" class="block text-sm font-medium text-gray-700">What is your main goal?</label>
-                            <select id="goal" class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select id="goal" class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm">
                                 <option>Get my business online for the first time</option>
                                 <option>Start selling my products online and automate</option>
                                 <option>Scale my marketing and conversions</option>
@@ -336,16 +365,16 @@
                         </div>
                         <div>
                             <label for="business-type" class="block text-sm font-medium text-gray-700">What best describes your business?</label>
-                            <input type="text" id="business-type" placeholder="E.g., 'Local bakery', 'Online clothing store'" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                            <input type="text" id="business-type" placeholder="E.g., 'Local bakery', 'Online clothing store'" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
                         </div>
                     </div>
                     <div class="mt-8 text-center">
-                        <button id="recommend-package-btn" class="bg-indigo-600 text-white font-bold px-8 py-3 rounded-lg text-lg cta-button flex items-center justify-center mx-auto">
+                        <button id="recommend-package-btn" class="bg-itbuddi-blue text-white font-bold px-8 py-3 rounded-lg text-lg cta-button flex items-center justify-center mx-auto">
                            <span id="recommend-package-text">Get Recommendation</span>
                            <div id="recommend-package-loader" class="loader hidden ml-3"></div>
                         </button>
                     </div>
-                    <div id="recommendation-result" class="mt-6 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-lg hidden"></div>
+                    <div id="recommendation-result" class="mt-6 p-6 bg-blue-50 border-l-4 border-itbuddi-blue rounded-r-lg hidden"></div>
                 </div>
             </div>
         </section>
@@ -359,7 +388,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 hero-gradient">
+        <section id="contact" class="py-20 contact-gradient">
             <div class="container mx-auto px-6 max-w-3xl">
                 <div class="text-center">
                     <h2 class="text-3xl md:text-4xl font-bold">Ready to Grow Your Business?</h2>
@@ -370,23 +399,23 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                                <input type="text" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                                <input type="text" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3">
+                                <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
                             </div>
                         </div>
                         <div class="mt-6">
                             <div class="flex justify-between items-center">
                                 <label for="message" class="block text-sm font-medium text-gray-700">How can we help?</label>
-                                <button type="button" id="generate-message-btn" class="text-sm text-indigo-600 hover:text-indigo-800 font-semibold">✨ Help me write this</button>
+                                <button type="button" id="generate-message-btn" class="text-sm text-itbuddi-blue hover:text-blue-700 font-semibold">✨ Help me write this</button>
                             </div>
-                            <textarea id="message" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"></textarea>
+                            <textarea id="message" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3"></textarea>
                             <div id="message-loader" class="loader hidden mt-2 mx-auto"></div>
                         </div>
                         <div class="mt-6 text-center">
-                            <button type="submit" class="w-full md:w-auto bg-indigo-600 text-white font-bold px-8 py-3 rounded-lg text-lg cta-button">
+                            <button type="submit" class="w-full md:w-auto bg-itbuddi-blue text-white font-bold px-8 py-3 rounded-lg text-lg cta-button">
                                 Send Message
                             </button>
                         </div>
@@ -397,10 +426,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
+    <footer class="bg-itbuddi-blue text-white">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; 2025 ITbuddi. All rights reserved.</p>
-            <p class="text-gray-400 mt-2">Your trusted partner in digital transformation.</p>
+            <p class="text-blue-200 mt-2">Your trusted partner in digital transformation.</p>
         </div>
     </footer>
 
@@ -578,5 +607,4 @@
 
 </body>
 </html>
-
 
