@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Website Project - ITbuddi</title>
+    <!-- FAVICON: Using the itbuddilogonew.jpg as favicon -->
+    <link rel="icon" type="image/jpeg" href="itbuddilogonew.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'itbuddi-yellow': '#D7DB38',
+                'itbuddi-blue': '#278BFB',
+                'itbuddi-violet': '#A13BFF',
+                'itbuddi-red': '#FF4955',
+                'itbuddi-green': '#B1FF59',
+                'itbuddi-orange': '#FF884D',
+                'itbuddi-charcoal': '#4C4C4C',
+              }
+            }
+          }
+        }
+      </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .form-gradient {
+             background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #278BFB;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Message Box Styles */
+        .message-box-overlay {
+            position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none;
+        }
+        .message-box-overlay.visible { opacity: 1; pointer-events: auto; }
+        .message-box {
+            background-color: white; padding: 30px; border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); max-width: 500px;
+            width: 90%; transform: scale(0.95); transition: transform 0.3s ease-in-out;
+        }
+        .message-box-overlay.visible .message-box { transform: scale(1); }
+        .message-box h3 {
+             margin-top: 0; margin-bottom: 15px; color: #333; font-weight: 600;
+             border-bottom: 1px solid #eee; padding-bottom: 10px;
+         }
+         .message-box p { margin-bottom: 20px; color: #555; font-size: 0.95em; line-height: 1.6; }
+         .message-box button {
+             display: block; margin: 20px auto 0; padding: 10px 25px; border: none;
+             background-color: #278BFB; color: white; border-radius: 8px;
+             cursor: pointer; font-weight: 500; transition: background-color 0.2s;
+         }
+         .message-box button:hover { background-color: #1c75d4; }
+
+        /* Form Step Styles */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .form-step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .progress-bar-bg {
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .progress-bar-fill {
+            background-color: #278BFB; /* itbuddi-blue */
+            transition: width 0.3s ease-in-out;
+        }
+        /* Custom Radio/Checkbox */
+        .custom-option {
+            border: 2px solid #e5e7eb; /* gray-200 */
+            transition: all 0.2s;
+        }
+        .custom-option:hover {
+            border-color: #bfdbfe; /* blue-200 */
+        }
+        .custom-option.selected {
+            border-color: #278BFB; /* itbuddi-blue */
+            background-color: #eff6ff; /* blue-50 */
+            box-shadow: 0 4px 10px rgba(39, 139, 251, 0.1);
+        }
+        .custom-option input {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-itbuddi-charcoal">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="itbuddi.jpg" alt="ITbuddi Logo" class="h-12 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#services" class="text-gray-600 hover:text-itbuddi-blue">Services</a>
+                <a href="index.html#why-us" class="text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+                <a href="index.html#reviews" class="text-gray-600 hover:text-itbuddi-blue">Reviews</a>
+                <a href="index.html#pricing" class="text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+                <a href="index.html#ai-tools" class="text-gray-600 hover:text-itbuddi-blue flex items-center">
+                    <img src="itbuddilogonew.jpg" alt="AI Icon" class="h-5 w-5 mr-2"> AI Tools
+                </a>
+                <a href="contact.html" class="text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            </div>
+            <a href="contact.html" class="hidden md:inline-block bg-itbuddi-blue text-white font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html#services" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Services</a>
+            <a href="index.html#why-us" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+            <a href="index.html#reviews" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Reviews</a>
+            <a href="index.html#pricing" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+             <a href="index.html#ai-tools" class="block py-2 text-gray-600 hover:text-itbuddi-blue flex items-center">
+                <img src="itbuddilogonew.jpg" alt="AI Icon" class="h-5 w-5 mr-2"> AI Tools
+            </a>
+            <a href="contact.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            <a href="contact.html" class="block mt-2 bg-itbuddi-blue text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 form-gradient">
+            <div class="container mx-auto px-6 max-w-3xl">
+                
+                <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itbuddi-charcoal text-center">Let's Build Your Website</h2>
+                    <p class="mt-4 text-lg text-gray-600 text-center">Tell us about your project. This helps us understand exactly what you need.</p>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-8">
+                        <div class="progress-bar-bg w-full h-2 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="progress-bar-fill h-2 rounded-full" style="width: 20%;"></div>
+                        </div>
+                        <p id="step-counter" class="text-center text-sm text-gray-500 mt-2">Step 1 of 5</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="website-form" class="mt-8">
+                        
+                        <!-- Step 1: Basic Info -->
+                        <div id="step-1" class="form-step active">
+                            <h3 class="text-2xl font-semibold text-itbuddi-charcoal mb-6">First, the basics...</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                    <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                    <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3">
+                                </div>
+                                <div>
+                                    <label for="business-name" class="block text-sm font-medium text-gray-700">Business Name</label>
+                                    <input type="text" id="business-name" name="business-name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3" placeholder="E.g., Sizwe's Plumbing">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Project Type -->
+                        <div id="step-2" class="form-step">
+                            <h3 class="text-2xl font-semibold text-itbuddi-charcoal mb-6">What kind of project is this?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="radio" name="project-type" value="New Website">
+                                    <h4 class="font-semibold text-lg">A brand new website</h4>
+                                    <p class="text-sm text-gray-600">Starting from scratch for a new business or idea.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="radio" name="project-type" value="Website Redesign">
+                                    <h4 class="font-semibold text-lg">A website redesign</h4>
+                                    <p class="text-sm text-gray-600">My current site is old and needs an update.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="radio" name="project-type" value="Online Store">
+                                    <h4 class="font-semibold text-lg">An online store (E-commerce)</h4>
+                                    <p class="text-sm text-gray-600">I want to sell products or services online.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="radio" name="project-type" value="Other">
+                                    <h4 class="font-semibold text-lg">Something else</h4>
+                                    <p class="text-sm text-gray-600">A landing page, a blog, or something custom.</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Business Details -->
+                        <div id="step-3" class="form-step">
+                            <h3 class="text-2xl font-semibold text-itbuddi-charcoal mb-6">Tell us about your business</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between items-center">
+                                        <label for="business-description" class="block text-sm font-medium text-gray-700">What does your business do?</label>
+                                        <button type="button" id="generate-message-btn" class="text-sm text-itbuddi-blue hover:text-blue-700 font-semibold flex items-center">
+                                            <img src="itbuddilogonew.jpg" alt="AI Icon" class="h-4 w-4 mr-1"> Help me write this
+                                        </button>
+                                    </div>
+                                    <textarea id="business-description" name="business-description" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3" placeholder="E.g., 'We are a local plumbing service in Randburg specializing in emergency repairs...'"></textarea>
+                                    <div id="message-loader" class="loader hidden mt-2"></div>
+                                </div>
+                                <div>
+                                    <label for="target-audience" class="block text-sm font-medium text-gray-700">Who is your target audience?</label>
+                                    <input type="text" id="target-audience" name="target-audience" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3" placeholder="E.g., 'Homeowners in Gauteng', 'Young professionals', 'Other businesses'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Design & Feel -->
+                        <div id="step-4" class="form-step">
+                            <h3 class="text-2xl font-semibold text-itbuddi-charcoal mb-6">What's the desired look and feel?</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Choose some words that describe your desired style:</label>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Professional">
+                                            <span class="font-semibold">Professional & Clean</span>
+                                        </label>
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Modern">
+                                            <span class="font-semibold">Modern & Minimal</span>
+                                        </label>
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Friendly">
+                                            <span class="font-semibold">Friendly & Fun</span>
+                                        </label>
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Bold">
+                                            <span class="font-semibold">Bold & Vibrant</span>
+                                        </label>
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Elegant">
+                                            <span class="font-semibold">Elegant & Simple</span>
+                                        </label>
+                                        <label class="custom-option p-4 rounded-lg cursor-pointer block text-center">
+                                            <input type="checkbox" name="style" value="Rugged">
+                                            <span class="font-semibold">Rugged & Industrial</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="inspiration-sites" class="block text-sm font-medium text-gray-700">Are there any websites you like?</label>
+                                    <input type="text" id="inspiration-sites" name="inspiration-sites" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-sm p-3" placeholder="Paste links here (e.g., www.example.com)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Features -->
+                        <div id="step-5" class="form-step">
+                            <h3 class="text-2xl font-semibold text-itbuddi-charcoal mb-6">What features will you need?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="checkbox" name="features" value="Contact Form">
+                                    <h4 class="font-semibold text-lg">Contact Form</h4>
+                                    <p class="text-sm text-gray-600">A basic form for quotes or questions.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="checkbox" name="features" value="Blog">
+                                    <h4 class="font-semibold text-lg">Blog / News Section</h4>
+                                    <p class="text-sm text-gray-600">To post articles and updates.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="checkbox" name="features" value="Booking System">
+                                    <h4 class="font-semibold text-lg">Booking System</h4>
+                                    <p class="text-sm text-gray-600">For appointments or reservations.</p>
+                                </label>
+                                <label class="custom-option p-5 rounded-lg cursor-pointer block">
+                                    <input type="checkbox" name="features" value="Photo Gallery">
+                                    <h4 class="font-semibold text-lg">Photo Gallery</h4>
+                                    <p class="text-sm text-gray-600">To showcase your work or products.</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" id="prev-btn" class="bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg cta-button" style="display: none;">
+                                Previous
+                            </button>
+                            <button type="button" id="next-btn" class="bg-itbuddi-blue text-white font-bold px-6 py-3 rounded-lg text-lg cta-button ml-auto">
+                                Next
+                            </button>
+                            <button type="submit" id="submit-btn" class="bg-itbuddi-green text-itbuddi-charcoal font-bold px-8 py-3 rounded-lg text-lg cta-button" style="display: none;">
+                                Submit Project
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-itbuddi-blue text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <img src="itbuddilogonew.jpg" alt="ITbuddi Icon" class="h-12 w-12 mx-auto mb-4">
+            <p>&copy; 2025 ITbuddi. All rights reserved.</p>
+            <p class="text-blue-200 mt-2">Your trusted partner in digital transformation.</p>
+        </div>
+    </footer>
+
+    <!-- Message Box Modal -->
+    <div id="message-box-overlay" class="message-box-overlay">
+        <div id="message-box-content" class="message-box">
+             <!-- Content dynamically inserted -->
+        </div>
+    </div>
+
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // --- Show Message Box Function ---
+        function showMessageBox(title, contentHtml) {
+            const msgBoxOverlay = document.getElementById('message-box-overlay');
+            const msgBoxContent = document.getElementById('message-box-content');
+            
+            if (!msgBoxOverlay || !msgBoxContent) return; // Exit if elements don't exist
+            
+            msgBoxContent.innerHTML = `<h3>${title}</h3>${contentHtml}<button id="msgbox-close-btn" class="cta-button">Close</button>`;
+            msgBoxOverlay.classList.add('visible');
+            const closeBtn = document.getElementById('msgbox-close-btn');
+             if(closeBtn) {
+                 closeBtn.onclick = () => {
+                     msgBoxOverlay.classList.remove('visible');
+                 };
+             }
+        }
+
+        // --- Multi-Step Form Logic ---
+        const steps = document.querySelectorAll('.form-step');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const stepCounter = document.getElementById('step-counter');
+        const websiteForm = document.getElementById('website-form');
+        let currentStep = 1;
+        const totalSteps = steps.length;
+
+        function updateStepView() {
+            steps.forEach(step => step.classList.remove('active'));
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+
+            // Update progress bar
+            const progressPercent = (currentStep / totalSteps) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            stepCounter.textContent = `Step ${currentStep} of ${totalSteps}`;
+
+            // Update button visibility
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+            nextBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+            submitBtn.style.display = currentStep === totalSteps ? 'inline-block' : 'none';
+
+            // Update navigation button alignment
+            if (currentStep === 1) {
+                nextBtn.classList.add('ml-auto');
+            } else {
+                nextBtn.classList.remove('ml-auto');
+            }
+        }
+
+        function validateStep(stepNumber) {
+            const stepElement = document.getElementById(`step-${stepNumber}`);
+            const inputs = stepElement.querySelectorAll('input[type="text"], input[type="email"], textarea');
+            const radios = stepElement.querySelectorAll('input[type="radio"]');
+            
+            let isValid = true;
+            
+            // Validate text/email/textarea inputs
+            inputs.forEach(input => {
+                if (input.id === 'name' || input.id === 'email') { // Simple check for required fields
+                    if (input.value.trim() === '') {
+                        input.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                }
+            });
+
+            // Validate radio buttons (if any exist in the step)
+            if (radios.length > 0) {
+                const isRadioChecked = Array.from(radios).some(radio => radio.checked);
+                if (!isRadioChecked) {
+                    isValid = false;
+                    // Find all option labels and add a warning border
+                    stepElement.querySelectorAll('.custom-option').forEach(opt => opt.classList.add('border-red-500'));
+                } else {
+                     stepElement.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('border-red-500'));
+                }
+            }
+            
+            return isValid;
+        }
+
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (validateStep(currentStep) && currentStep < totalSteps) {
+                    currentStep++;
+                    updateStepView();
+                } else if (!validateStep(currentStep)) {
+                     showMessageBox('Hold on!', '<p>Please fill out all the required fields before continuing.</p>');
+                }
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStepView();
+                }
+            });
+        }
+
+        // Custom Radio/Checkbox Listeners
+        document.querySelectorAll('.custom-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const input = option.querySelector('input');
+                if (!input) return;
+
+                if (input.type === 'radio') {
+                    // Unselect all others in the same group
+                    const groupName = input.name;
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+                        radio.closest('.custom-option').classList.remove('selected');
+                    });
+                    // Select this one
+                    option.classList.add('selected');
+                    input.checked = true;
+                } else if (input.type === 'checkbox') {
+                    // Toggle selection
+                    option.classList.toggle('selected');
+                    input.checked = !input.checked;
+                }
+            });
+        });
+
+        // --- Gemini API Integration ---
+        const API_KEY = ""; // Handled by environment
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+        
+        const generateMessageBtn = document.getElementById('generate-message-btn');
+        const businessDescTextarea = document.getElementById('business-description');
+        const messageLoader = document.getElementById('message-loader');
+
+        if (generateMessageBtn) {
+            generateMessageBtn.addEventListener('click', async () => {
+                const businessName = document.getElementById('business-name').value || "My business";
+                const keywords = businessDescTextarea.value;
+                
+                if (!keywords) { 
+                    showMessageBox('Input Required', '<p>Please write a few words about your business first. Even just keywords are fine!</p>'); 
+                    return; 
+                }
+
+                generateMessageBtn.classList.add('hidden');
+                messageLoader.classList.remove('hidden');
+                businessDescTextarea.disabled = true;
+                
+                const systemPrompt = "You are a helpful assistant for ITbuddi. The user wants help writing their business description for a website project form. Their business name and keywords are provided. Expand their notes into a concise, professional business description (2-3 sentences) that explains what they do and who they serve.";
+                const userQuery = `Business Name: ${businessName}, Notes: ${keywords}`;
+
+                try {
+                    const payload = { 
+                        contents: [{ parts: [{ text: userQuery }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }]}
+                    };
+                    const response = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    
+                    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                    
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0].text) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        businessDescTextarea.value = text;
+                    } else {
+                        throw new Error('Invalid API response structure');
+                    }
+                } catch (error) { 
+                    console.error("Gemini API Error:", error);
+                    showMessageBox('Error', '<p>Sorry, we couldn\'t help write the description right now. Please try again.</p>');
+                } finally { 
+                    generateMessageBtn.classList.remove('hidden');
+                    messageLoader.classList.add('hidden');
+                    businessDescTextarea.disabled = false;
+                }
+            });
+        }
+
+        // Handle Form Submission
+        if (websiteForm) {
+            websiteForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Final validation
+                if (!validateStep(currentStep)) {
+                     showMessageBox('Almost there!', '<p>Please fill out the features section to submit.</p>');
+                     return;
+                }
+                
+                // In a real app, you'd collect all form data
+                // const formData = new FormData(websiteForm);
+                // const data = Object.fromEntries(formData.entries());
+                // console.log("Form Data:", data);
+
+                const name = document.getElementById('name').value || "Valued Client";
+                showMessageBox('Project Submitted!', `<p>Thanks, ${name}! We've received your project details. Our team will review everything and get back to you at ${document.getElementById('email').value} within one business day.</p>`);
+                
+                // Reset form
+                websiteForm.reset();
+                currentStep = 1;
+                updateStepView();
+                document.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+            });
+        }
+
+     });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Builder - ITbuddi</title>
+    <!-- FAVICON: Using the itbuddilogonew.jpg as favicon -->
+    <link rel="icon" type="image/jpeg" href="itbuddilogonew.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'itbuddi-yellow': '#D7DB38',
+                'itbuddi-blue': '#278BFB',
+                'itbuddi-violet': '#A13BFF',
+                'itbuddi-red': '#FF4955',
+                'itbuddi-green': '#B1FF59',
+                'itbuddi-orange': '#FF884D',
+                'itbuddi-charcoal': '#4C4C4C',
+              }
+            }
+          }
+        }
+      </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .ai-gradient {
+             background: linear-gradient(145deg, #f0f9ff 0%, #f3e8ff 100%);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Card Styles */
+        .option-card {
+            background-color: white;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            border-color: #278BFB; /* itbuddi-blue */
+            box-shadow: 0 10px 15px -3px rgba(39, 139, 251, 0.1), 0 4px 6px -2px rgba(39, 139, 251, 0.05);
+            transform: translateY(-4px);
+        }
+        .option-card.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-color: #f9fafb; /* gray-50 */
+        }
+        .option-card.disabled:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #e5e7eb;
+        }
+
+        /* Generation Page Styles */
+        .tab-btn {
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            border-color: #278BFB;
+            color: #278BFB;
+        }
+        .example-prompt {
+            background-color: #f9fafb; /* gray-50 */
+            border: 1px solid #e5e7eb; /* gray-200 */
+            transition: all 0.2s;
+        }
+        .example-prompt:hover {
+            background-color: #eff6ff; /* blue-50 */
+            border-color: #bfdbfe; /* blue-200 */
+            cursor: pointer;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #278BFB;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* NEW: Result Tabs */
+        .result-tab-btn {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            border: 2px solid transparent;
+            color: #4C4C4C; /* itbuddi-charcoal */
+        }
+        .result-tab-btn.active {
+            background-color: white;
+            border-color: #e5e7eb; /* gray-200 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .result-tab-content {
+            display: none;
+        }
+        .result-tab-content.active {
+            display: block;
+        }
+
+        /* Result Box / Iframe */
+        #preview-frame {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem;
+            background-color: white;
+        }
+        #result-code {
+            background-color: #1f2937; /* gray-800 */
+            color: #d1d5db; /* gray-300 */
+            font-family: monospace;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 500px;
+            overflow-y: auto;
+            border: none;
+            white-space: pre;
+            word-wrap: normal;
+            overflow-x: auto;
+        }
+
+        /* Message Box Styles */
+        .message-box-overlay {
+            position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none;
+        }
+        .message-box-overlay.visible { opacity: 1; pointer-events: auto; }
+        .message-box {
+            background-color: white; padding: 30px; border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); max-width: 500px;
+            width: 90%; transform: scale(0.95); transition: transform 0.3s ease-in-out;
+        }
+        .message-box-overlay.visible .message-box { transform: scale(1); }
+        .message-box h3 {
+             margin-top: 0; margin-bottom: 15px; color: #333; font-weight: 600;
+             border-bottom: 1px solid #eee; padding-bottom: 10px;
+         }
+         .message-box p { margin-bottom: 20px; color: #555; font-size: 0.95em; line-height: 1.6; }
+         .message-box button {
+             display: block; margin: 20px auto 0; padding: 10px 25px; border: none;
+             background-color: #278BFB; color: white; border-radius: 8px;
+             cursor: pointer; font-weight: 500; transition: background-color 0.2s;
+         }
+         .message-box button:hover { background-color: #1c75d4; }
+    </style>
+</head>
+<body class="bg-gray-50 text-itbuddi-charcoal">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="itbuddi.jpg" alt="ITbuddi Logo" class="h-12 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#services" class="text-gray-600 hover:text-itbuddi-blue">Services</a>
+                <a href="ai-builder.html" class="text-itbuddi-blue font-semibold">AI Builder</a> <!-- Current Page -->
+                <a href="index.html#why-us" class="text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+                <a href="index.html#pricing" class="text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+                <a href="contact.html" class="text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            </div>
+            <a href="contact.html" class="hidden md:inline-block bg-itbuddi-blue text-white font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html#services" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Services</a>
+            <a href="ai-builder.html" class="block py-2 text-itbuddi-blue font-semibold">AI Builder</a> <!-- Current Page -->
+            <a href="index.html#why-us" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+            <a href="index.html#pricing" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+            <a href="contact.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            <a href="contact.html" class="block mt-2 bg-itbuddi-blue text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+        </div>
+    </header>
+
+    <main class="ai-gradient min-h-screen py-16 md:py-24">
+        
+        <!-- Screen 1: Create with AI (Default View) -->
+        <div id="screen-1" class="container mx-auto px-6 max-w-4xl text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-itbuddi-charcoal">Create with AI</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">How would you like to get started?</p>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Generate Card (Functional) -->
+                <div id="card-generate" class="option-card text-left">
+                    <!-- Icon -->
+                    <div class="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-itbuddi-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.457-2.457L14.25 6l1.036-.259a3.375 3.375 0 002.457-2.457L18 2.25l.259 1.036a3.375 3.375 0 002.457 2.457L21.75 6l-1.036.259a3.375 3.375 0 00-2.457 2.457z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-itbuddi-charcoal">Generate</h3>
+                    <p class="mt-2 text-gray-600">Create a new website from a one-line prompt in a few seconds.</p>
+                </div>
+
+                <!-- Paste in text Card (Disabled) -->
+                <div id="card-paste" class="option-card text-left disabled">
+                     <div class="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08H8.25a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006 21h5.25m3.75-15H18a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0118 21h-5.25m3.75-15H8.25a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006 21h5.25M9 3.75h6A2.25 2.25 0 0117.25 6v1.5H6.75V6A2.25 2.25 0 019 3.75z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-itbuddi-charcoal">Paste in text</h3>
+                    <p class="mt-2 text-gray-600">Create from notes, an outline, or existing content. (Coming soon!)</p>
+                </div>
+
+                <!-- Import file Card (Disabled) -->
+                <div id="card-import" class="option-card text-left disabled">
+                    <div class="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-itbuddi-charcoal">Import file or URL</h3>
+                    <p class="mt-2 text-gray-600">Enhance existing docs or webpages. (Coming soon!)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Generate (Hidden by default) -->
+        <div id="screen-2" class="container mx-auto px-6 max-w-4xl" style="display: none;">
+            <button id="start-over-btn" class="text-gray-600 hover:text-itbuddi-blue font-medium flex items-center mb-6">
+                <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+                Back
+            </button>
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold text-itbuddi-charcoal text-center">Generate</h1>
+                <p class="mt-3 text-lg text-gray-600 text-center">What would you like to create today?</p>
+                
+                <!-- Tabs -->
+                <div class="flex justify-center space-x-8 border-b border-gray-200 mt-8">
+                    <button class="tab-btn active font-semibold py-3 px-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                        Webpage
+                    </button>
+                    <button class="tab-btn font-medium text-gray-500 py-3 px-4 flex items-center" disabled>
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 01-8.614 3.013zM21.75 18L12 7.5l-4.22 4.22a11.95 11.95 0 0114.07 3.518z" /></svg>
+                        Presentation (soon)
+                    </button>
+                    <button class="tab-btn font-medium text-gray-500 py-3 px-4 flex items-center" disabled>
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                        Document (soon)
+                    </button>
+                </div>
+
+                <!-- Prompt Input -->
+                <div class="mt-8">
+                    <textarea id="prompt-input" rows="4" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-itbuddi-blue focus:border-itbuddi-blue sm:text-lg p-4" placeholder="Describe what you'd like to make..."></textarea>
+                </div>
+
+                <!-- Example Prompts -->
+                <p class="text-sm font-medium text-gray-500 mt-6 mb-3">Example prompts</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="example-prompt p-4 rounded-lg flex items-center" data-prompt="A modern website for a local bakery in Randburg called 'The Flour Pot'. It should have a hero section, an 'About Us' section, a gallery of products, and a contact form.">
+                        <svg class="w-5 h-5 text-gray-500 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                        <span class="text-sm text-gray-700">A website for a local bakery called 'The Flour Pot'</span>
+                    </div>
+                    <div class="example-prompt p-4 rounded-lg flex items-center" data-prompt="A professional landing page for a new tech startup specializing in AI-powered data analytics. Needs a strong hero, features section, and a sign-up form.">
+                        <svg class="w-5 h-5 text-gray-500 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.095 1.536-.269 2.252M3.269 14.252A8.959 8.959 0 013 12c0-.778.095-1.536.269-2.252m0 4.5A8.959 8.959 0 013 12" /></svg>
+                        <span class="text-sm text-gray-700">A landing page for an AI data analytics startup</span>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="mt-8 text-center">
+                    <button id="generate-btn" class="bg-itbuddi-blue text-white font-bold px-10 py-4 rounded-lg text-lg cta-button flex items-center justify-center mx-auto">
+                        <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                        Generate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="mt-12 text-center" style="display: none;">
+                <div class="loader mx-auto"></div>
+                <p class="mt-4 text-lg text-gray-600 font-medium">Building your website... this may take a moment.</p>
+            </div>
+
+            <!-- Result State (NEW TABBED INTERFACE) -->
+            <div id="result-state" class="mt-12" style="display: none;">
+                <h2 class="text-3xl font-bold text-itbuddi-charcoal text-center">Your Generated Website</h2>
+                
+                <!-- Tab Buttons -->
+                <div class="my-6 p-1.5 bg-gray-100 rounded-lg flex justify-center space-x-2 max-w-xs mx-auto">
+                    <button id="preview-tab-btn" class="result-tab-btn flex-1 text-center active">Preview</button>
+                    <button id="code-tab-btn" class="result-tab-btn flex-1 text-center">Code</button>
+                </div>
+                
+                <!-- Tab Content -->
+                <div>
+                    <!-- Preview Tab -->
+                    <div id="preview-container" class="result-tab-content active">
+                        <iframe id="preview-frame" title="Generated Website Preview"></iframe>
+                    </div>
+                    
+                    <!-- Code Tab -->
+                    <div id="code-container" class="result-tab-content">
+                        <div class="flex justify-end mb-2">
+                             <button id="copy-code-btn" class="bg-gray-200 text-gray-800 font-semibold px-5 py-2 rounded-lg cta-button flex items-center">
+                                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h2.25m8.25-8.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-7.5A2.25 2.25 0 018.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 00-2.25 2.25v6" /></svg>
+                                Copy Code
+                            </button>
+                        </div>
+                        <pre id="result-code" class="w-full"></pre>
+                        <p id="copy-feedback" class="text-green-600 font-medium mt-2 text-right" style="display: none;">Copied to clipboard!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-itbuddi-blue text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <img src="itbuddilogonew.jpg" alt="ITbuddi Icon" class="h-12 w-12 mx-auto mb-4">
+            <p>&copy; 2025 ITbuddi. All rights reserved.</p>
+            <p class="text-blue-200 mt-2">Your trusted partner in digital transformation.</p>
+        </div>
+    </footer>
+
+    <!-- Message Box Modal -->
+    <div id="message-box-overlay" class="message-box-overlay">
+        <div id="message-box-content" class="message-box">
+             <!-- Content dynamically inserted -->
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Page Elements ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const screen1 = document.getElementById('screen-1');
+        const screen2 = document.getElementById('screen-2');
+        const cardGenerate = document.getElementById('card-generate');
+        const startOverBtn = document.getElementById('start-over-btn');
+        const promptInput = document.getElementById('prompt-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const loadingState = document.getElementById('loading-state');
+        
+        // Result state elements
+        const resultState = document.getElementById('result-state');
+        const previewTabBtn = document.getElementById('preview-tab-btn');
+        const codeTabBtn = document.getElementById('code-tab-btn');
+        const previewContainer = document.getElementById('preview-container');
+        const codeContainer = document.getElementById('code-container');
+        const previewFrame = document.getElementById('preview-frame');
+        const resultCode = document.getElementById('result-code');
+        const copyCodeBtn = document.getElementById('copy-code-btn');
+        const copyFeedback = document.getElementById('copy-feedback');
+
+        // --- Show Message Box Function ---
+        function showMessageBox(title, contentHtml) {
+            const msgBoxOverlay = document.getElementById('message-box-overlay');
+            const msgBoxContent = document.getElementById('message-box-content');
+            
+            if (!msgBoxOverlay || !msgBoxContent) return;
+            
+            msgBoxContent.innerHTML = `<h3>${title}</h3>${contentHtml}<button id="msgbox-close-btn" class="cta-button">Close</button>`;
+            msgBoxOverlay.classList.add('visible');
+            const closeBtn = document.getElementById('msgbox-close-btn');
+             if(closeBtn) {
+                 closeBtn.onclick = function() {
+                     msgBoxOverlay.classList.remove('visible');
+                 };
+             }
+        }
+        
+        // --- Mobile Menu Toggle ---
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // --- Page Navigation ---
+        function showScreen1() {
+            screen1.style.display = 'block';
+            screen2.style.display = 'none';
+            resultState.style.display = 'none';
+            loadingState.style.display = 'none';
+            promptInput.value = '';
+        }
+
+        function showScreen2() {
+            screen1.style.display = 'none';
+            screen2.style.display = 'block';
+            resultState.style.display = 'none';
+            loadingState.style.display = 'none';
+        }
+
+        if (cardGenerate) cardGenerate.addEventListener('click', showScreen2);
+        if (startOverBtn) startOverBtn.addEventListener('click', showScreen1);
+
+        // --- Example Prompts ---
+        document.querySelectorAll('.example-prompt').forEach(function(el) {
+            el.addEventListener('click', function() {
+                promptInput.value = el.dataset.prompt;
+                promptInput.focus();
+            });
+        });
+
+        // --- NEW: Result Tab Switching ---
+        if (previewTabBtn) {
+            previewTabBtn.addEventListener('click', function() {
+                previewTabBtn.classList.add('active');
+                codeTabBtn.classList.remove('active');
+                previewContainer.classList.add('active');
+                codeContainer.classList.remove('active');
+            });
+        }
+        if (codeTabBtn) {
+             codeTabBtn.addEventListener('click', function() {
+                codeTabBtn.classList.add('active');
+                previewTabBtn.classList.remove('active');
+                codeContainer.classList.add('active');
+                previewContainer.classList.remove('active');
+            });
+        }
+
+        // --- Gemini API Call ---
+        // IMPORTANT: Paste your API Key here
+        const API_KEY = "AIzaSyAmpAbTSB9xs9VEiKVmiTygxkpdyyPlzSo"; // <--- PASTE YOUR KEY HERE
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+        
+        // This is a "clean" version of the prompt text.
+        const systemPrompt = `You are an expert AI website developer. Your sole purpose is to generate a single, complete, self-contained HTML file based on a user's prompt.
+You MUST follow these rules:
+1.  **SINGLE FILE:** All HTML, CSS, and JS must be in one file.
+2.  **TAILWIND CSS:** You MUST use Tailwind CSS classes for all styling. Do not use <style> tags or inline style="" attributes.
+3.  **LOAD TAILWIND:** You MUST include the Tailwind script in the <head>: <script src="https://cdn.tailwindcss.com"></script>.
+4.  **CONTENT:** The site must be well-structured with sections relevant to the prompt (e.g., hero, about, services, contact). Use professional-looking placeholder text and content.
+5.  **IMAGES:** You MUST use placeholder images from https://placehold.co. For example: https://placehold.co/600x400/278BFB/FFFFFF?text=Bakery+Hero. Use the site's theme colors (like '278BFB') in the placeholders.
+6.  **NO EXPLANATION:** Do NOT write any text, explanation, or markdown *before* or *after* the HTML code. Your *entire* response must be *only* the raw HTML code, starting with <!DOCTYPE html> and ending with </html>.`;
+
+        if (generateBtn) {
+            generateBtn.addEventListener('click', async function() {
+                const userQuery = promptInput.value;
+                if (!userQuery) {
+                    showMessageBox('No Prompt', '<p>Please describe the website you want to make in the text box.</p>');
+                    return;
+                }
+                
+                // FIXED LOGIC: This now correctly checks for the placeholder, NOT your actual key.
+                if (API_KEY === "AIzaSyAmpAbTSB9xs9VEiKVmiTygxkpdyyPlzSo" || API_KEY === "AIzaSyAmpAbTSB9xs9VEiKVmiTygxkpdyyPlzSo") {
+                    showMessageBox('API Key Missing', '<p>The API_KEY is not set. Please open the `ai-builder.html` file and paste your Google API key into the `API_KEY` variable inside the script tag.</p>');
+                    return;
+                }
+
+                // Hide form, show loader
+                generateBtn.disabled = true;
+                loadingState.style.display = 'block';
+                resultState.style.display = 'none';
+
+                try {
+                    const payload = {
+                        contents: [{ parts: [{ text: userQuery }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] }
+                    };
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorBody = await response.json();
+                        console.error("API Error Response:", errorBody);
+                        throw new Error(`API Error: ${response.status} ${response.statusText}. ${errorBody?.error?.message || ''}`);
+                    }
+                    
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0].text) {
+                        const generatedHtml = result.candidates[0].content.parts[0].text;
+                        
+                        // Populate Code Tab
+                        resultCode.textContent = generatedHtml;
+                        
+                        // Populate Preview Tab
+                        const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                        previewDoc.open();
+                        previewDoc.write(generatedHtml);
+                        previewDoc.close();
+
+                        // Show results, default to preview
+                        loadingState.style.display = 'none';
+                        resultState.style.display = 'block';
+                        previewTabBtn.click(); // Programmatically click preview tab
+                        
+                    } else {
+                        // This can happen if the response is blocked for safety reasons
+                        console.warn("API Response received, but no content:", result);
+                        if (result.candidates && result.candidates[0].finishReason === "SAFETY") {
+                             throw new Error('The response was blocked due to safety settings. Please try a different prompt.');
+                        } else {
+                             throw new Error('Invalid API response structure. The API returned no content.');
+                        }
+                    }
+                } catch (error) {
+                    console.error("Gemini API Error:", error);
+                    loadingState.style.display = 'none';
+                    showMessageBox('Error', `<p>Sorry, we couldn't generate the website code. This might be due to an API error or safety restriction. Please check the console (Right-click > Inspect > Console) for details and try a different prompt.</p><p_style="font-size: 0.8em; color: #666; margin-top: 10px;">${error.message}</p>`);
+                } finally {
+                    generateBtn.disabled = false;
+                }
+            });
+        }
+
+        // --- Copy Code Button ---
+        if (copyCodeBtn) {
+            copyCodeBtn.addEventListener('click', function() {
+                const textToCopy = resultCode.textContent;
+                // Use a temporary textarea to copy
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.value = textToCopy;
+                document.body.appendChild(tempTextarea);
+                tempTextarea.select();
+                try {
+                    document.execCommand('copy');
+                    // Show feedback
+                    copyFeedback.style.display = 'block';
+                    setTimeout(function() {
+                        copyFeedback.style.display = 'none';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy code: ', err);
+                    showMessageBox('Copy Failed', '<p>Sorry, we couldn\'t copy the code to your clipboard automatically.</p>');
+                } finally {
+                    // This ensures the textarea is removed even if 'copy' fails
+                    document.body.removeChild(tempTextarea);
+                }
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

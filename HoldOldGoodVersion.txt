@@ -34,30 +34,6 @@
         .hero-gradient {
             background: linear-gradient(135deg, #278BFB 0%, #A13BFF 100%);
         }
-        /* NEW STYLES FOR HERO VIDEO */
-        .hero-video-container {
-            position: relative;
-            overflow: hidden;
-        }
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-        }
-        .hero-overlay {
-            position: relative;
-            z-index: 1;
-            background-color: rgba(17, 24, 39, 0.6); /* A dark overlay for readability - bg-gray-900/60 */
-        }
-        /* END NEW STYLES */
-
         .contact-gradient {
              background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
         }
@@ -68,16 +44,23 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .service-card-link { /* RENAMED from .service-card */
+        .service-card-link {
+            display: block;
             transition: all 0.3s ease;
             border-top-width: 4px;
-            display: block; /* Make <a> a block element */
-            height: 100%; /* Make cards in a grid equal height */
         }
-        .service-card-link:hover { /* RENAMED from .service-card:hover */
+        .service-card-link:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        /* DEPRECATED: .service-card {
+            transition: all 0.3s ease;
+            border-top-width: 4px;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        } */
         .gemini-feature-card {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
@@ -257,17 +240,6 @@
              cursor: pointer; font-weight: 500; transition: background-color 0.2s;
          }
          .message-box button:hover { background-color: #1c75d4; }
-
-        /* NEW STYLES FOR FADE-IN ANIMATION */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-itbuddi-charcoal">
@@ -275,27 +247,23 @@
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html">
+            <a href="index.html"> <!-- Updated link -->
                 <img src="itbuddi.jpg" alt="ITbuddi Logo" class="h-12 w-auto">
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="#services" class="text-gray-600 hover:text-itbuddi-blue nav-link">Services</a>
-                <!-- NEW LINK ADDED -->
-                <a href="ai-builder.html" class="text-gray-600 hover:text-itbuddi-blue nav-link flex items-center">
-                    <svg class="w-5 h-5 mr-1.5 text-itbuddi-violet" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.457-2.457L14.25 6l1.036-.259a3.375 3.375 0 002.457-2.457L18 2.25l.259 1.036a3.375 3.375 0 002.457 2.457L21.75 6l-1.036.259a3.375 3.375 0 00-2.457 2.457z" /></svg>
-                    AI Builder
-                </a>
                 <a href="#why-us" class="text-gray-600 hover:text-itbuddi-blue nav-link">Why Us</a>
                 <a href="#reviews" class="text-gray-600 hover:text-itbuddi-blue nav-link">Reviews</a>
+                <!-- NEW LINK -->
                 <a href="#use-cases" class="text-gray-600 hover:text-itbuddi-blue nav-link">Use Cases</a>
                 <a href="#pricing" class="text-gray-600 hover:text-itbuddi-blue nav-link">Pricing</a>
                 <a href="#ai-tools" class="text-gray-600 hover:text-itbuddi-blue flex items-center nav-link">
                     <img src="itbuddilogonew.jpg" alt="AI Icon" class="h-5 w-5 mr-2"> AI Tools
                 </a>
-                <a href="contact.html" class="text-gray-600 hover:text-itbuddi-blue">Contact</a>
+                <a href="contact.html" class="text-gray-600 hover:text-itbuddi-blue">Contact</a> <!-- Updated link -->
             </div>
             <a href="contact.html" class="hidden md:inline-block bg-itbuddi-blue text-white font-semibold px-5 py-2 rounded-lg cta-button">
-                Get a Free Quote
+                Get a Free Quote <!-- Updated link -->
             </a>
             <button id="mobile-menu-btn" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -304,70 +272,51 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#services" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link">Services</a>
-            <!-- NEW LINK ADDED -->
-            <a href="ai-builder.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link flex items-center">
-                <svg class="w-5 h-5 mr-1.5 text-itbuddi-violet" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.457-2.457L14.25 6l1.036-.259a3.375 3.375 0 002.457-2.457L18 2.25l.259 1.036a3.375 3.375 0 002.457 2.457L21.75 6l-1.036.259a3.375 3.375 0 00-2.457 2.457z" /></svg>
-                AI Builder
-            </a>
             <a href="#why-us" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link">Why Us</a>
             <a href="#reviews" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link">Reviews</a>
+            <!-- NEW LINK -->
             <a href="#use-cases" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link">Use Cases</a>
             <a href="#pricing" class="block py-2 text-gray-600 hover:text-itbuddi-blue nav-link">Pricing</a>
              <a href="#ai-tools" class="block py-2 text-gray-600 hover:text-itbuddi-blue flex items-center nav-link">
                 <img src="itbuddilogonew.jpg" alt="AI Icon" class="h-5 w-5 mr-2"> AI Tools
             </a>
-            <a href="contact.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            <a href="contact.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a> <!-- Updated link -->
             <a href="contact.html" class="block mt-2 bg-itbuddi-blue text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
-                Get a Free Quote
+                Get a Free Quote <!-- Updated link -->
             </a>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section - UPDATED WITH VIDEO -->
-        <section class="hero-video-container text-white">
-            <!-- 
-              INSTRUCTIONS: 
-              1. Download a video (e.g., from Pexels.com, search "abstract network")
-              2. Name it "hero-video.mp4"
-              3. Place it in the same folder as this index.html file.
-            -->
-            <video autoplay loop muted playsinline id="hero-video">
-                <!-- This is a placeholder, replace it with your downloaded video -->
-                <source src="3141210-uhd_3840_2160_25fps.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-             <!-- THIS DIV WAS MISSING -->
-             <div class="hero-overlay py-20 md:py-32"> 
-                 <div class="container mx-auto px-6 text-center">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Your Fractional AI & IT Department</h1>
-                    <p class="mt-4 text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">We empower South African SMMEs with websites, CRM, chatbots, and automation. Get a measurable ROI with predictable pricing and a complete digital solution, fast.</p>
-                    <a href="#pricing" class="mt-8 inline-block bg-itbuddi-yellow text-itbuddi-charcoal font-bold px-8 py-4 rounded-lg text-lg cta-button">
-                        View Our Packages
-                    </a>
-                </div>
-             </div> <!-- AND THIS CLOSING DIV WAS MISSING -->
+        <!-- Hero Section -->
+        <section class="hero-gradient py-20 md:py-32">
+             <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Your Fractional AI & IT Department</h1>
+                <p class="mt-4 text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">We empower South African SMMEs with websites, CRM, chatbots, and automation. Get a measurable ROI with predictable pricing and a complete digital solution, fast.</p>
+                <a href="#pricing" class="mt-8 inline-block bg-itbuddi-yellow text-itbuddi-charcoal font-bold px-8 py-4 rounded-lg text-lg cta-button">
+                    View Our Packages
+                </a>
+            </div>
         </section>
 
-        <!-- Services Section - ADDED FADE-IN CLASS -->
-        <section id="services" class="py-20 bg-white fade-in-section">
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-white">
              <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Your All-in-One Digital Solution</h2>
                     <p class="mt-4 text-lg text-gray-600">From your first website to advanced automation, we provide an integrated platform for growth.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Service 1: Website & E-commerce (Link to new start page) -->
-                    <a href="start-project.html" class="bg-gray-50 p-8 rounded-xl shadow-md service-card-link text-center border-itbuddi-blue">
+                    <!-- Service 1: Website & E-commerce (UPDATED) -->
+                    <a href="website-form.html" class="bg-gray-50 p-8 rounded-xl shadow-md service-card-link text-center border-itbuddi-blue">
                         <div class="bg-blue-100 text-itbuddi-blue rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                         </div>
                         <h3 class="text-xl font-semibold mt-6 text-itbuddi-charcoal">Websites & Online Stores</h3>
                         <p class="mt-2 text-gray-600">Professional, mobile-friendly websites and e-commerce stores on Shopify, Woo, or Wix.</p>
-                        <span class="block mt-4 text-itbuddi-blue font-semibold">Get Started &rarr;</span>
+                        <span class="block mt-4 text-itbuddi-blue font-semibold">Start Your Project &rarr;</span>
                     </a>
-                    <!-- Service 2: CRM & Automation (Link to contact) -->
+                    <!-- Service 2: CRM & Automation (Updated to link to contact) -->
                     <a href="contact.html" class="bg-gray-50 p-8 rounded-xl shadow-md service-card-link text-center border-itbuddi-orange">
                         <div class="bg-orange-100 text-itbuddi-orange rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
@@ -376,7 +325,7 @@
                         <p class="mt-2 text-gray-600">Manage customer relationships and automate marketing with powerful CRM and email/WhatsApp tools.</p>
                         <span class="block mt-4 text-itbuddi-orange font-semibold">Enquire Now &rarr;</span>
                     </a>
-                    <!-- Service 3: AI Chatbots (Link to contact) -->
+                    <!-- Service 3: AI Chatbots (Updated to link to contact) -->
                     <a href="contact.html" class="bg-gray-50 p-8 rounded-xl shadow-md service-card-link text-center border-itbuddi-violet">
                        <div class="bg-violet-100 text-itbuddi-violet rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
@@ -385,7 +334,7 @@
                         <p class="mt-2 text-gray-600">Engage customers 24/7 with AI chatbots for lead capture, FAQs, product search, and appointment booking.</p>
                         <span class="block mt-4 text-itbuddi-violet font-semibold">Enquire Now &rarr;</span>
                     </a>
-                    <!-- Service 4: Analytics & SEO (Link to contact) -->
+                    <!-- Service 4: Analytics & SEO (Updated to link to contact) -->
                     <a href="contact.html" class="bg-gray-50 p-8 rounded-xl shadow-md service-card-link text-center border-itbuddi-green">
                         <div class="bg-green-100 text-itbuddi-green rounded-full h-16 w-16 flex items-center justify-center mx-auto">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" /></svg>
@@ -398,24 +347,8 @@
             </div>
         </section>
         
-        <!-- NEW AI BUILDER SECTION - ADDED FADE-IN CLASS -->
-        <section id="ai-builder-cta" class="py-20 contact-gradient fade-in-section">
-            <div class="container mx-auto px-6 text-center">
-                 <div class="max-w-3xl mx-auto gemini-feature-card p-10 md:p-16 rounded-xl shadow-lg">
-                    <h2 class="text-3xl md:text-4xl font-bold text-itbuddi-charcoal flex items-center justify-center">
-                        <svg class="w-8 h-8 mr-3 text-itbuddi-violet" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.457-2.457L14.25 6l1.036-.259a3.375 3.375 0 002.457-2.457L18 2.25l.259 1.036a3.375 3.375 0 002.457 2.457L21.75 6l-1.036.259a3.375 3.375 0 00-2.457 2.457z" /></svg>
-                        Try Our AI Website Builder
-                    </h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Want to experiment? Use our AI to generate a complete website layout from a simple text prompt. Create, copy, and launch.</p>
-                    <a href="ai-builder.html" class="mt-8 inline-block bg-itbuddi-violet text-white font-bold px-8 py-4 rounded-lg text-lg cta-button">
-                        Start Building with AI
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Value Proposition Section (RESTORED) - ADDED FADE-IN CLASS -->
-        <section id="why-us" class="py-20 bg-blue-50 fade-in-section">
+        <!-- Value Proposition Section -->
+        <section id="why-us" class="py-20 bg-blue-50">
              <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Designed for South African SMMEs</h2>
@@ -450,8 +383,8 @@
             </div>
         </section>
 
-        <!-- Client Reviews Section (RESTORED) - ADDED FADE-IN CLASS -->
-        <section id="reviews" class="py-20 bg-white fade-in-section">
+        <!-- Client Reviews Section (NEW) -->
+        <section id="reviews" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">What Our Clients Say</h2>
@@ -570,8 +503,8 @@
             </div>
         </section>
 
-        <!-- Use Cases Section (RESTORED) - ADDED FADE-IN CLASS -->
-        <section id="use-cases" class="py-20 bg-blue-50 fade-in-section">
+        <!-- NEW: Use Cases Section -->
+        <section id="use-cases" class="py-20 bg-blue-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">How We Transform Businesses</h2>
@@ -621,8 +554,8 @@
         <!-- END: Use Cases Section -->
 
 
-        <!-- Pricing Section (Updated) - ADDED FADE-IN CLASS -->
-        <section id="pricing" class="py-20 bg-white fade-in-section">
+        <!-- Pricing Section (Updated) -->
+        <section id="pricing" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Package Details and Pricing</h2>
@@ -719,8 +652,8 @@
             </div>
         </section>
 
-        <!-- Feature Comparison Table (Now Odoo-style Custom Builder) - ADDED FADE-IN CLASS -->
-        <section id="custom-builder" class="py-20 bg-gray-50 hidden fade-in-section">
+        <!-- Feature Comparison Table (Now Odoo-style Custom Builder) -->
+        <section id="custom-builder" class="py-20 bg-gray-50 hidden">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Build Your Custom Package</h2>
@@ -765,8 +698,8 @@
         </section>
 
 
-        <!-- Gemini AI Tools Section - ADDED FADE-IN CLASS -->
-        <section id="ai-tools" class="py-20 contact-gradient fade-in-section">
+        <!-- Gemini AI Tools Section -->
+        <section id="ai-tools" class="py-20 contact-gradient">
              <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold flex items-center justify-center">
@@ -788,8 +721,8 @@
             </div>
         </section>
 
-        <!-- AI Package Recommender Section - ADDED FADE-IN CLASS -->
-        <section id="ai-recommender" class="py-20 bg-white fade-in-section">
+        <!-- AI Package Recommender Section -->
+        <section id="ai-recommender" class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-4xl">
                 <div class="text-center mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold flex items-center justify-center">
@@ -824,8 +757,8 @@
             </div>
         </section>
 
-        <!-- About Us Section - ADDED FADE-IN CLASS -->
-        <section id="about" class="py-20 bg-white fade-in-section">
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-4xl text-center">
                 <h2 class="text-3xl md:text-4xl font-bold">We're Your Friendly Tech Buddy</h2>
                 <p class="mt-6 text-lg text-gray-600">ITbuddi was founded with a simple mission: to help small and medium-sized businesses thrive in the digital world. We know that technology can be intimidating, so we've built our business around being approachable, reliable, and genuinely invested in your success. We handle the complex tech stuff so you can focus on what you do best – running your business.</p>
@@ -854,29 +787,6 @@
     <script>
     // Wait for the DOM to be fully loaded before running scripts
     document.addEventListener('DOMContentLoaded', function() {
-
-        // --- NEW: FADE-IN-ON-SCROLL LOGIC ---
-        const sections = document.querySelectorAll('.fade-in-section');
-        const observerOptions = {
-            root: null, // relative to the viewport
-            rootMargin: '0px',
-            threshold: 0.1 // 10% of the element is visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Stop observing once it's visible
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        // --- END NEW FADE-IN LOGIC ---
-
 
         // --- Feature Data (Includes Placeholder Prices & Descriptions - ADJUST THESE!) ---
         const features = [
@@ -1209,21 +1119,12 @@
                  e.preventDefault();
                  const targetId = this.getAttribute('href').split('#')[1];
                  const targetElement = document.getElementById(targetId);
-
-                 if (targetElement) {
-                     // Check if it's the 'ai-builder.html' link
-                     if (this.getAttribute('href') === 'ai-builder.html') {
-                         window.location.href = 'ai-builder.html'; // Normal navigation
-                     } else {
-                         targetElement.scrollIntoView({ behavior: 'smooth' });
-                         if(mobileMenu) mobileMenu.classList.add('hidden'); // Close mobile menu
-                     }
-                 } else if (this.getAttribute('href') === 'ai-builder.html') {
-                     window.location.href = 'ai-builder.html'; // Normal navigation
+                 if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    if(mobileMenu) mobileMenu.classList.add('hidden'); // Close mobile menu
                  }
             });
         });
-
 
         // --- Gemini API (Unchanged from previous version, just ensuring it uses new modal) ---
         const API_KEY = "";

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project - ITbuddi</title>
+    <!-- FAVICON: Using the itbuddilogonew.jpg as favicon -->
+    <link rel="icon" type="image/jpeg" href="itbuddilogonew.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'itbuddi-yellow': '#D7DB38',
+                'itbuddi-blue': '#278BFB',
+                'itbuddi-violet': '#A13BFF',
+                'itbuddi-red': '#FF4955',
+                'itbuddi-green': '#B1FF59',
+                'itbuddi-orange': '#FF884D',
+                'itbuddi-charcoal': '#4C4C4C',
+              }
+            }
+          }
+        }
+      </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .ai-gradient {
+             background: linear-gradient(145deg, #f0f9ff 0%, #f3e8ff 100%);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Card Styles */
+        .option-card-link {
+            display: block;
+            background-color: white;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 2rem;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .option-card-link:hover {
+            border-color: #278BFB; /* itbuddi-blue */
+            box-shadow: 0 10px 15px -3px rgba(39, 139, 251, 0.1), 0 4px 6px -2px rgba(39, 139, 251, 0.05);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-itbuddi-charcoal">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="itbuddi.jpg" alt="ITbuddi Logo" class="h-12 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#services" class="text-itbuddi-blue font-semibold">Services</a> <!-- Current Page -->
+                <a href="ai-builder.html" class="text-gray-600 hover:text-itbuddi-blue">AI Builder</a>
+                <a href="index.html#why-us" class="text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+                <a href="index.html#pricing" class="text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+                <a href="contact.html" class="text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            </div>
+            <a href="contact.html" class="hidden md:inline-block bg-itbuddi-blue text-white font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html#services" class="block py-2 text-itbuddi-blue font-semibold">Services</a> <!-- Current Page -->
+            <a href="ai-builder.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">AI Builder</a>
+            <a href="index.html#why-us" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Why Us</a>
+            <a href="index.html#pricing" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Pricing</a>
+            <a href="contact.html" class="block py-2 text-gray-600 hover:text-itbuddi-blue">Contact</a>
+            <a href="contact.html" class="block mt-2 bg-itbuddi-blue text-white text-center font-semibold px-5 py-2 rounded-lg cta-button">
+                Get a Free Quote
+            </a>
+        </div>
+    </header>
+
+    <main class="ai-gradient min-h-screen py-16 md:py-24">
+        
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-itbuddi-charcoal">How would you like to build your website?</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Choose one of our paths below to get started.</p>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Option 1: Let Us Build It -->
+                <a href="website-form.html" class="option-card-link text-left">
+                    <!-- Icon -->
+                    <div class="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-itbuddi-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 00-3.162-3.422c-1.129-.812-2.3-1.2-3.5-1.16a3.75 3.75 0 10-3.675 0c-1.198-.04-2.37.348-3.5 1.16A9.094 9.094 0 006 18.72m12 0c2.652.18 4.5 2.54 4.5 5.28v.25a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 24v-.25c0-2.74 1.848-5.1 4.5-5.28M12 14.25c-2.485 0-4.5-2.015-4.5-4.5s2.015-4.5 4.5-4.5 4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5z" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-itbuddi-charcoal">Let Us Build It For You</h3>
+                    <p class="mt-2 text-gray-600">Submit your project details, and our expert team will get in touch to build your perfect website.</p>
+                    <span class="block mt-6 text-itbuddi-blue font-semibold">Start Your Project Brief &rarr;</span>
+                </a>
+
+                <!-- Option 2: Build with AI -->
+                <a href="ai-builder.html" class="option-card-link text-left">
+                    <!-- Icon -->
+                    <div class="w-16 h-16 rounded-lg bg-violet-100 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-itbuddi-violet" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.457-2.457L14.25 6l1.036-.259a3.375 3.375 0 002.457-2.457L18 2.25l.259 1.036a3.375 3.375 0 002.457 2.457L21.75 6l-1.036.259a3.375 3.375 0 00-2.457 2.457z" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-itbuddi-charcoal">Build with AI</h3>
+                    <p class="mt-2 text-gray-600">Use our AI tool to generate a complete website from a text prompt. Perfect for experimenting.</p>
+                    <span class="block mt-6 text-itbuddi-violet font-semibold">Try the AI Builder &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-itbuddi-blue text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <img src="itbuddilogonew.jpg" alt="ITbuddi Icon" class="h-12 w-12 mx-auto mb-4">
+            <p>&copy; 2025 ITbuddi. All rights reserved.</p>
+            <p class="text-blue-200 mt-2">Your trusted partner in digital transformation.</p>
+        </div>
+    </footer>
+
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+     });
+    </script>
+
+</body>
+</html>
